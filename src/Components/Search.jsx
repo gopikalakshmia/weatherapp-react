@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-export default function Search() {
+export default function Search({handleCurrentWeather}) {
   const [city, setCity] = useState([]);
+
   const apiKey = "a2a3d57d7dc7ae05a6322fc9d51d5619";
   const fetchCity = async (event) => {
     const response = await fetch(
@@ -18,26 +19,29 @@ export default function Search() {
     const lat = city[event.target.value].lat.toFixed(2);
     const lon = city[event.target.value].lon.toFixed(2);
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
     );
     if (response.ok) {
       const data = await response.json();
       console.log(data);
+      handleCurrentWeather(data);
+      setCity([]);
     }
   };
   return (
-    <>
+    <div className="text-center p-5">
       <input
         type="text"
         placeholder="Enter City"
+        className="border-2 border-blue-400 rounded-md p-1 w-sm"
         onChange={() => {
           fetchCity(event);
         }}
       />
       {city && (
-        <div>
+        <div className="bg-sky-200  w-sm text-center justify-self-center">
           {city.map((option, index) => (
-            <div key={index}>
+            <div key={index} className=" font-semibold p-1 text-left">
               {" "}
               <button
                 onClick={() => handleClick(event)}
@@ -47,6 +51,6 @@ export default function Search() {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
