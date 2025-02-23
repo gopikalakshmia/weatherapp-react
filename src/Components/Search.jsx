@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-export default function Search({handleCurrentWeather}) {
+export default function Search({ handleCurrentWeather }) {
   const [city, setCity] = useState([]);
+
 
   const apiKey = "a2a3d57d7dc7ae05a6322fc9d51d5619";
   const fetchCity = async (event) => {
@@ -16,17 +17,31 @@ export default function Search({handleCurrentWeather}) {
   };
   const handleClick = async (event) => {
     //console.log(event.target.value);
-    const lat = city[event.target.value].lat.toFixed(2);
-    const lon = city[event.target.value].lon.toFixed(2);
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
-    );
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      handleCurrentWeather(data);
-      setCity([]);
-    }
+    //try {
+      const lat = city[event.target.value].lat.toFixed(2);
+      const lon = city[event.target.value].lon.toFixed(2);
+      const weatherResponse = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
+      );
+      const forecastResponse = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&units=metric&appid=${apiKey}`
+      );
+
+      if (weatherResponse.ok && forecastResponse.ok) {
+        const weatherData = await weatherResponse.json();
+        const forecastData=await forecastResponse.json();
+        console.log(forecastData);
+        handleCurrentWeather(weatherData,forecastData);
+        console.log
+        setCity([]);
+      }
+    //}
+    // } catch (err) {
+    //   console.log(
+    //     "Error occured during fetching the data from Api",
+       
+    //   );
+    // }
   };
   return (
     <div className="text-center p-5">
