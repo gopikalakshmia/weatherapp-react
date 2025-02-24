@@ -1,4 +1,6 @@
-import { FaFontAwesome } from "react-icons/fa";
+import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { faWind,faWater,faCloud, faTemperatureLow, faTemperatureArrowDown, faTemperatureArrowUp} from '@fortawesome/free-solid-svg-icons';
+import IconDisplay from './IconDisplay';
 
 export default function DisplayWeather({ weather }) {
   const month = [
@@ -19,9 +21,10 @@ export default function DisplayWeather({ weather }) {
   const day = now.getDate();
   const monthDay = month[now.getMonth()];
   const year = now.getFullYear();
+  console.log(weather);
   return (
     <div>
-      <div className="font-sans p-20 shadow-2xl m-8 w-1/2  rounded-4xl  justify-self-center">
+      <div className="font-sans p-20 shadow-2xl  w-1/2  rounded-4xl  justify-self-center">
         {weather && weather.main ? (
           <div className="flex flex-row">
             <div className="w-1/2">
@@ -34,14 +37,14 @@ export default function DisplayWeather({ weather }) {
               <h2 className="font-extrabold">{weather.name}</h2>
               </div>
               
-              <div className="flex flex-row p-10">
+              <div className="flex flex-row p-2.5">
                 <div className="">
                   <img
                     src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
                     alt="weathericonimage"
-                    className="size-30"
+                    className="size-25"
                   />
-                  <p className="font-bold text-sm">{weather.weather[0].description}</p>
+                  <p className="font-bold text-xs ">{weather.weather[0].description}</p>
                 </div>
                 <div className=" font-light ">
                   <p>
@@ -55,23 +58,16 @@ export default function DisplayWeather({ weather }) {
               </div>
             
               <div className="flex flex-col w-1/2 p-5  text-lg font-medium ">
-                <div className="pt-1 p-4 font-bold">
+                <div className="pt-1 p-4 font-semibold text-blue-800">
                   <p>Feels like {Math.round(weather.main.feels_like)}°C</p>
                 </div>
-                <div className="p-4">
-                  <FaFontAwesome icon="fa-regular fa-wind" className="size-10"/>
-                  <p>Wind Speed  {weather.wind.speed}m/s</p>
+                <div className='flex flex-row'>
+                <IconDisplay icon={faTemperatureArrowUp} identifier={""} value={weather.main.temp_min}/>
+                <IconDisplay icon={faTemperatureArrowDown} identifier={""} value={weather.main.temp_max}/>
                 </div>
-                <div className="p-4">
-                <FaFontAwesome icon="fas fa-humidity" className="size-10"/>
-                  <p>Humidity  {weather.main.humidity}%</p>
-                </div>
-                <div className="p-4">
-                  <p>Pressure  {weather.main.pressure}%</p>
-                </div>
-                <div className="p-4">
-                  <p>Clouds  {weather.clouds.all}%</p>
-                </div>
+                <IconDisplay icon={faWater} identifier={"Humidity"} value={weather.main.humidity}/>
+                <IconDisplay icon={faWind} identifier={"Wind"} value={weather.wind.speed}/>
+                <IconDisplay icon={faCloud} identifier={"Cloud"} value={weather.clouds.all+" %"}/>
               </div>
               
             
