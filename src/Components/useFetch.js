@@ -7,8 +7,7 @@ export default  function useFetch(fetchApi){
 
 useEffect(()=>{
     console.log(fetchApi);  
-      const fetchData=async()=>{
-        console.log(fetchApi); 
+      const fetchData=async()=>{ 
         try{
             setIsLoading(true);
         const response = await fetch(fetchApi);
