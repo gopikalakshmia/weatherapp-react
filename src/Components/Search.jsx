@@ -7,12 +7,15 @@ export default function Search({ handleCurrentWeather }) {
   const apiKey = "a2a3d57d7dc7ae05a6322fc9d51d5619";
   const fetchCity = async (event) => {
     const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${event.target.value}&limit=5&appid=${apiKey}`
+      `http://api.openweathermap.org/geo/1.0/direct?q=${event.target.value}&&exclude={minutely,hourly}&limit=5&appid=${apiKey}`
     );
     if (response.ok) {
       const data = await response.json();
       //console.log(data);
       setCity(data);
+    }
+    else{
+      throw new Error("Failed to fetch data..")
     }
   };
   const handleClick = async (event) => {
@@ -24,7 +27,7 @@ export default function Search({ handleCurrentWeather }) {
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
       );
       const forecastResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&units=metric&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
       );
 
       if (weatherResponse.ok && forecastResponse.ok) {

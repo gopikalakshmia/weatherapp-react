@@ -21,7 +21,6 @@ export default function DisplayWeather({ weather }) {
   const day = now.getDate();
   const monthDay = month[now.getMonth()];
   const year = now.getFullYear();
-  console.log(weather);
   return (
     <div>
       <div className="font-sans p-20 shadow-2xl  w-1/2  rounded-4xl  justify-self-center">
@@ -62,8 +61,8 @@ export default function DisplayWeather({ weather }) {
                   <p>Feels like {Math.round(weather.main.feels_like)}°C</p>
                 </div>
                 <div className='flex flex-row'>
-                <IconDisplay icon={faTemperatureArrowUp} identifier={""} value={weather.main.temp_min}/>
-                <IconDisplay icon={faTemperatureArrowDown} identifier={""} value={weather.main.temp_max}/>
+                <IconDisplay icon={faTemperatureArrowUp} identifier={""} value={Math.round(weather.main.temp_min)}/>
+                <IconDisplay icon={faTemperatureArrowDown} identifier={""} value={Math.round(weather.main.temp_max)}/>
                 </div>
                 <IconDisplay icon={faWater} identifier={"Humidity"} value={weather.main.humidity}/>
                 <IconDisplay icon={faWind} identifier={"Wind"} value={weather.wind.speed}/>
