@@ -1,8 +1,10 @@
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import { faWind,faWater,faCloud, faTemperatureLow, faTemperatureArrowDown, faTemperatureArrowUp} from '@fortawesome/free-solid-svg-icons';
 import IconDisplay from './IconDisplay';
+import useFetch from './useFetch';
 
-export default function DisplayWeather({ weather }) {
+
+export default function DisplayWeather({ coordinates }) {
   const month = [
     "January",
     "February",
@@ -21,6 +23,12 @@ export default function DisplayWeather({ weather }) {
   const day = now.getDate();
   const monthDay = month[now.getMonth()];
   const year = now.getFullYear();
+  //fetchAPI
+  const apiKey = "a2a3d57d7dc7ae05a6322fc9d51d5619";
+  const api=`https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&appid=${apiKey}`;
+  const{data:weather,isLoading,error}=useFetch(api);
+  if(isLoading){return <p >Weather data is loading.....</p>}
+  if(error){return <p className='text-red-800 text-extrabold p-5 m-5 text-center text-xl'>{error.message}</p>}
   return (
     <div>
       <div className="font-sans p-20 shadow-2xl  w-1/2  rounded-4xl  justify-self-center">

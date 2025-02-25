@@ -23,21 +23,22 @@ export default function Search({ handleCurrentWeather }) {
     //try {
       const lat = city[event.target.value].lat.toFixed(2);
       const lon = city[event.target.value].lon.toFixed(2);
-      const weatherResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
-      );
-      const forecastResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
-      );
+      handleCurrentWeather({lat:lat,lon:lon});
+      // const weatherResponse = await fetch(
+      //   `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
+      // );
+      // const forecastResponse = await fetch(
+      //   `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
+      // );
 
-      if (weatherResponse.ok && forecastResponse.ok) {
-        const weatherData = await weatherResponse.json();
-        const forecastData=await forecastResponse.json();
-        console.log(forecastData);
-        handleCurrentWeather(weatherData,forecastData);
-        console.log
-        setCity([]);
-      }
+      // if (weatherResponse.ok && forecastResponse.ok) {
+      //   const weatherData = await weatherResponse.json();
+      //   const forecastData=await forecastResponse.json();
+      //   console.log(forecastData);
+      //   handleCurrentWeather(weatherData,forecastData);
+      //   console.log
+      //   setCity([]);
+      // }
     //}
     // } catch (err) {
     //   console.log(
