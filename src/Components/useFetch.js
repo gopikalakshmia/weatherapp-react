@@ -6,7 +6,6 @@ export default  function useFetch(fetchApi){
     const[error,setError]=useState(null);
 
 useEffect(()=>{
-    console.log(fetchApi);  
       const fetchData=async()=>{ 
         try{
             setIsLoading(true);
