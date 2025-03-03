@@ -16,6 +16,7 @@ Features 🚀
 
 ✅ Responsive UI – Built with Tailwind CSS.
 
+✅ AI generated Summary – Built with Gemini AI Integration.
 
 Tech Stack 🛠
 
