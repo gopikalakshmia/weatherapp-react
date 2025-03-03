@@ -8,7 +8,7 @@ export default function ForecastCard({date,forecastDay}){
  
     return(
       < > 
-      {(day!==today) &&<div className="p-5  justify-self-center shadow-2xl m-5 w-35 rounded-lg text-center bg-white/50 ">
+      {(day!==today) &&<div className="p-3  justify-self-center shadow-2xl m-5 w-35 rounded-lg text-center bg-white/50 ">
         <h1 className="font-bold">{day}</h1>
                 <img
                   src={`https://openweathermap.org/img/wn/${forecastDay.icon}.png`}

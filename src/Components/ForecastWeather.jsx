@@ -54,7 +54,7 @@ export default function ForecastWeather({ coordinates }) {
   }
 
   return (
-    <div className="fixed top-[73%] left-1/4  justify-self-center flex flex-row">
+    <div className="fixed top-[75%] left-1/4  justify-self-center flex flex-row">
       {forecastData &&
         ///forecastData.map((item)=><ForecastCard key={item[0]} forecastDay={item[1]} />)}
         forecastData.map(([date, data]) => (
