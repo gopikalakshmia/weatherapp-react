@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   faWind,
   faWater,
@@ -11,7 +12,7 @@ import TempToggle from "./tempToggle";
 import { useContext } from "react";
 import { TempContext } from "../Store/TempContext";
 import WeatherAi from "./weatherAi";
-
+const apiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 export default function DisplayWeather({ coordinates }) {
   const month = [
     "January",
@@ -34,7 +35,6 @@ export default function DisplayWeather({ coordinates }) {
   //context
   const { temp: celsiusTemp } = useContext(TempContext);
   //fetchAPI
-  const apiKey = "a2a3d57d7dc7ae05a6322fc9d51d5619";
   const api = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&appid=${apiKey}`;
   const { data: weather, isLoading, error } = useFetch(api);
   if (isLoading) {

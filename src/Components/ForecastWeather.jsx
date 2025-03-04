@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import ForecastCard from "./ForecastCard";
 import { useEffect } from "react";
 import useFetch from "./useFetch";
+const apiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
 export default function ForecastWeather({ coordinates }) {
 
   const [forecastData, setForecastData] = useState([]);
   //fetchAPI
-  const apiKey = "a2a3d57d7dc7ae05a6322fc9d51d5619";
   const api = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&appid=${apiKey}`;
  //custom hook
  const { data: forecastDays, isLoading, error } = useFetch(api);
