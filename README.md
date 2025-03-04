@@ -1,6 +1,6 @@
 100 Project challenge #2-WeatherApp with React
 
-React Weather App ⛅
+React Weather App 🌦️ 
 
 A React-based Weather App that provides real-time weather updates for the user’s current location and any searched city. The app includes city name predictions, a 4-day forecast, and a temperature unit conversion feature (°C ↔ °F).
 
