@@ -42,6 +42,10 @@ Installation & Setup ⚙️
  
 		npm install
 
+	3.	Create a .env file in the root directory.
+ 
+		Add your OpenWeather API key (VITE_OPENWEATHER_API_KEY=your_api_key_here) and Gemini Ai key(VITE_OPEN_WEATHER_API_KEY=your_api_key_here)
+
 	4.	Start the development server:
 
 		npm run dev
